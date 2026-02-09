@@ -571,7 +571,7 @@ section {
 /* ===== Hero Controls ===== */
 .hero-controls {
     position: absolute;
-    bottom: -70px;
+    bottom: -90px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -1727,7 +1727,7 @@ section {
     }
 
     .hero-controls {
-        bottom: 20px;
+        bottom: -100px;
         gap: 0.5rem;
         padding: 0.3rem 0.8rem;
     }
