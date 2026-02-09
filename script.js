@@ -241,15 +241,26 @@ if (contactForm) {
     });
 }
 
-// ===== Botón "Conoce Nuestros Productos" =====
+// ===== Botones del Hero =====
 const heroBtns = document.querySelectorAll('.hero .btn-primary');
 heroBtns.forEach((btn) => {
     btn.addEventListener('click', function () {
-        // Solo desplazarse si el botón dice "Conoce Nuestros Productos"
-        if (this.textContent.includes('Conoce Nuestros Productos')) {
-            const productosSection = document.getElementById('productos');
+        const buttonText = this.textContent.trim();
+
+        if (buttonText.includes('Conoce Nuestros Productos')) {
+            const productosSection = document.getElementById('servicios');
             if (productosSection) {
                 productosSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (buttonText.includes('Solicitar Cotización')) {
+            const contactoSection = document.getElementById('contacto');
+            if (contactoSection) {
+                contactoSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (buttonText.includes('Nuestra Historia')) {
+            const sobreNosotrosSection = document.getElementById('sobre-nosotros');
+            if (sobreNosotrosSection) {
+                sobreNosotrosSection.scrollIntoView({ behavior: 'smooth' });
             }
         }
     });
