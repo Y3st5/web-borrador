@@ -203,42 +203,142 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        // Obtener valores del formulario
-        const nombre = document.getElementById('nombre').value;
-        const email = document.getElementById('email').value;
-        const telefono = document.getElementById('telefono').value;
-        const mensaje = document.getElementById('mensaje').value;
+        // Limpiar mensajes anteriores
+        clearFormMessages();
 
-        // Validación básica
-        if (!nombre || !email || !mensaje) {
-            alert('Por favor completa todos los campos requeridos');
-            return;
+        try {
+            // Obtener valores del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            // Validación básica del lado cliente
+            if (!nombre || !email || !mensaje) {
+                showFormMessage('Por favor completa todos los campos requeridos', 'error');
+                return;
+            }
+
+            // Validar email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showFormMessage('Por favor ingresa un email válido', 'error');
+                return;
+            }
+
+            // Validar longitud mínima del mensaje
+            if (mensaje.length < 10) {
+                showFormMessage('El mensaje debe tener al menos 10 caracteres', 'error');
+                return;
+            }
+
+            // Validar nombre (solo letras y espacios)
+            const nombreRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
+            if (!nombreRegex.test(nombre)) {
+                showFormMessage('El nombre solo puede contener letras y espacios', 'error');
+                return;
+            }
+
+            // Validar teléfono (opcional, pero si se ingresa, debe ser válido)
+            if (telefono && !/^\+?\d{7,15}$/.test(telefono.replace(/\s/g, ''))) {
+                showFormMessage('Por favor ingresa un teléfono válido', 'error');
+                return;
+            }
+
+            // Mostrar mensaje de envío
+            showFormMessage('Enviando mensaje...', 'info');
+
+            // Deshabilitar el botón de envío
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+
+            // Preparar datos para envío
+            const formData = new FormData();
+            formData.append('nombre', nombre);
+            formData.append('email', email);
+            formData.append('telefono', telefono);
+            formData.append('mensaje', mensaje);
+
+            // Enviar datos al servidor usando fetch
+            const response = await fetch('Envio.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            // Verificar si la respuesta es correcta
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+
+            // Parsear respuesta JSON
+            const result = await response.json();
+
+            if (result.success) {
+                // Éxito
+                showFormMessage(result.message, 'success');
+
+                // Limpiar formulario después de un breve delay
+                setTimeout(() => {
+                    contactForm.reset();
+                    clearFormMessages();
+                }, 3000);
+            } else {
+                // Error del servidor
+                if (result.errors && result.errors.length > 0) {
+                    // Mostrar errores específicos
+                    showFormMessage('Errores de validación: ' + result.errors.join(', '), 'error');
+                } else {
+                    showFormMessage(result.message || 'Error desconocido del servidor', 'error');
+                }
+            }
+
+        } catch (error) {
+            console.error('Error al enviar el formulario:', error);
+
+            // Manejar diferentes tipos de errores
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                showFormMessage('Error de conexión. Verifica tu conexión a internet e intenta nuevamente.', 'error');
+            } else {
+                showFormMessage('Error al enviar el mensaje: ' + error.message, 'error');
+            }
+        } finally {
+            // Rehabilitar el botón de envío
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Enviar Mensaje';
         }
-
-        // Validar email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Por favor ingresa un email válido');
-            return;
-        }
-
-        // Construir mensaje para mailto
-        const mailtoLink = `mailto:info@bhpperu.com?subject=${encodeURIComponent(
-            'Consulta desde sitio web'
-        )}&body=${encodeURIComponent(
-            `Nombre: ${nombre}\nEmail: ${email}\nTelefono: ${telefono}\n\nMensaje:\n${mensaje}`
-        )}`;
-
-        // Por ahora, abrir mailto
-        window.location.href = mailtoLink;
-
-        // Mostrar confirmación
-        alert('Tu mensaje será enviado a través de tu cliente de email predeterminado');
-        contactForm.reset();
     });
+}
+
+// Función para mostrar mensajes del formulario
+function showFormMessage(message, type) {
+    clearFormMessages();
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `form-message ${type}`;
+    messageDiv.textContent = message;
+
+    const form = document.getElementById('contactForm');
+    form.appendChild(messageDiv);
+
+    // Auto-remover mensajes de error después de 5 segundos
+    if (type === 'error') {
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Función para limpiar mensajes del formulario
+function clearFormMessages() {
+    const existingMessages = document.querySelectorAll('.form-message');
+    existingMessages.forEach(msg => msg.remove());
 }
 
 // ===== Botones del Hero =====

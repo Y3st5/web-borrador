@@ -29,6 +29,24 @@ body {
     color: var(--text);
     background-color: var(--light);
 }
+
+/* ===== Accessibility ===== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary);
+    color: var(--white);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: var(--radius);
+    z-index: 10000;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
 section {
   scroll-margin-top: 130px;
 }
@@ -413,7 +431,6 @@ section {
 .logo img {
     height: 100px;
     width: auto;
-    padding: auto;
 }
 
 /* ===== Hero Section ===== */
@@ -751,7 +768,8 @@ section {
     }
 
     .hero-image img {
-        height: 250px;
+        min-height: 200px;
+        height: auto;
     }
 
     .hero-controls {
@@ -1499,6 +1517,34 @@ section {
     animation: fadeInUp 1s ease-out 1.2s both;
 }
 
+/* Form Messages */
+.form-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -1763,6 +1809,15 @@ section {
         height: 300px;
     }
 
+    .services-list {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .service-item {
+        padding: 2rem 1.5rem;
+    }
+
     .about-stats {
         grid-template-columns: 1fr;
     }
@@ -1844,8 +1899,6 @@ section {
         line-height: 1.5;
     }
 
-
-
     .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1893,8 +1946,34 @@ section {
         font-size: 1rem;
     }
 
+    .services-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
     .service-item {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .service-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.6rem;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .service-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .contact-content {
