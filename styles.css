@@ -169,7 +169,12 @@ section {
     color: rgba(255, 255, 255, 0.6);
     transition: color 0.3s ease;
 }
-
+.search-box:hover {
+    background: linear-gradient(135deg, var(--accent) 0%, #ff5722 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+    transform: translateY(-2px);
+}
 /* Cuando se hace foco o se añade una clase activa, la barra aparece */
 .search-box:hover .search-input,
 .search-input.active,
@@ -680,9 +685,25 @@ section {
         display: none;
     }
 
-    .search-box {
-        display: none;
-    }
+.search-box {
+    display: none;
+}
+
+.header {
+    padding: 0.25rem 0;
+}
+
+.header-content {
+    padding: 0.25rem 0;
+}
+
+.logo img {
+    height: 60px;
+}
+
+.menu-toggle {
+    margin-left: auto;
+}
 }
 
 @media (min-width: 769px) {
@@ -934,6 +955,17 @@ section {
     }
 }
 
+@keyframes servicesFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 
 /* ===== Services Section ===== */
@@ -942,6 +974,7 @@ section {
     background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
     position: relative;
     overflow: hidden;
+    animation: servicesFadeIn 1.5s ease-out both;
 }
 
 .services::before {

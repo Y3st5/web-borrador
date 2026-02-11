@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de productos metalmecánicos e industriales de alta calidad. Componentes precisos para tu industria.">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Productos - TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Skip to main content for accessibility -->
+<a href="#productos-main" class="skip-link">Saltar al contenido principal</a>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/index.html">
+                    <img src="/image3.png" alt="Logo de TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C." loading="lazy">
+                </a>
+            </div>
+            <form class="search-box" action="/search" method="GET" id="headerSearch">
+                <input type="text" class="search-input" placeholder="Buscar productos..." name="q" aria-label="Buscar productos" id="headerSearchInput">
+                <button type="submit" class="search-button" aria-label="Buscar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="products.html" class="active">Productos</a></li>
+                    <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="cart-button" id="cartButton" aria-label="Carrito de compras">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+    <nav class="nav-mobile" id="navMobile">
+        <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="products.html" class="active">Productos</a></li>
+            <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main id="productos-main">
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Nuestros Productos</h1>
+            <p>Catálogo completo de componentes metalmecánicos e industriales de alta precisión</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar" id="filtersSidebar">
+                    <button class="filters-close" id="filtersClose" aria-label="Cerrar filtros">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Categories Filter -->
+                    <div class="filter-group">
+                        <h3>Categorías</h3>
+                        <div class="category-list">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="all" checked>
+                                <span>Todos los Productos</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="ejes">
+                                <span>Ejes y Componentes Rotatorios</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="engranajes">
+                                <span>Engranajes Industriales</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="carcasas">
+                                <span>Carcasas y Estructuras</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="herramientas">
+                                <span>Herramientas Especializadas</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="consumibles">
+                                <span>Consumibles Industriales</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-group">
+                        <h3>Rango de Precio</h3>
+                        <div class="price-range">
+                            <input type="number" id="priceMin" placeholder="Min" value="MIN">
+                            <input type="number" id="priceMax" placeholder="Max" value="MAX">
+                        </div>
+                        <button class="btn-filter" id="applyPriceFilter">Aplicar</button>
+                    </div>
+
+                    <!-- Stock Filter -->
+                    <div class="filter-group">
+                        <h3>Disponibilidad</h3>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="inStockOnly">
+                            <span>Solo en Stock</span>
+                        </label>
+                    </div>
+
+                    <!-- Clear Filters -->
+                    <button class="btn-clear-filters" id="clearFilters">Limpiar Filtros</button>
+                </aside>
+
+                <!-- Products Grid -->
+                <div class="products-main">
+                    <!-- Mobile Filter Toggle -->
+                    <button class="filters-toggle" id="filtersToggle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        </svg>
+                        Filtros
+                    </button>
+
+                    <!-- Sorting -->
+                    <div class="products-toolbar">
+                        <div class="sort-container">
+                            <label for="sortSelect">Ordenar por:</label>
+                            <select id="sortSelect">
+                                <option value="newest">Más Reciente</option>
+                                <option value="popularity">Más Popular</option>
+                                <option value="price-low">Precio: Menor a Mayor</option>
+                                <option value="price-high">Precio: Mayor a Menor</option>
+                                <option value="name-asc">Nombre: A-Z</option>
+                                <option value="name-desc">Nombre: Z-A</option>
+                            </select>
+                        </div>
+                        <div class="results-count">
+                            <span id="resultsCount">0</span> productos encontrados
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be inserted here by JavaScript -->
+                    </div>
+
+                    <!-- No Results -->
+                    <div class="no-results" id="noResults" style="display: none;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <h3>No hay productos que coincidan</h3>
+                        <p>Intenta ajustar tus filtros o busca otros términos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Product Detail Modal -->
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose" aria-label="Cerrar modal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="modal-body">
+            <div class="modal-image">
+                <img id="modalProductImage" src="" alt="">
+            </div>
+            <div class="modal-info">
+                <h2 id="modalProductName"></h2>
+                <div class="product-rating">
+                    <div class="stars" id="modalProductRating"></div>
+                    <span id="modalProductReviews">(0 reseñas)</span>
+                </div>
+                <div class="product-price">
+                    <span class="price" id="modalProductPrice">S/. 0.00</span>
+                    <span class="original-price" id="modalProductOriginalPrice" style="display: none;">S/. 0.00</span>
+                </div>
+                <div class="product-stock" id="modalProductStock"></div>
+                <div class="product-description" id="modalProductDescription"></div>
+                <div class="product-specs" id="modalProductSpecs"></div>
+                <div class="modal-actions">
+                    <div class="quantity-selector">
+                        <button id="quantityMinus">-</button>
+                        <input type="number" id="quantityInput" value="1" min="1">
+                        <button id="quantityPlus">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-add-cart" id="modalAddCart">Agregar al Carrito</button>
+                </div>
+                <div class="product-info-boxes">
+                    <div class="info-box">
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <h4>Envío Rápido</h4>
+                            <p>Entrega en 2-5 días hábiles</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Garantía</h4>
+                            <p>Calidad garantizada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Tu Carrito</h3>
+        <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <!-- Cart items will be inserted here -->
+    </div>
+    <div class="cart-empty" id="cartEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <p>Tu carrito está vacío</p>
+        <a href="#" class="btn btn-primary">Continuar comprando</a>
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Subtotal:</span>
+            <span id="cartSubtotal">S/. 0.00</span>
+        </div>
+        <div class="cart-total">
+            <span>IGV (18%):</span>
+            <span id="cartIGV">S/. 0.00</span>
+        </div>
+        <div class="cart-total total">
+            <span>Total:</span>
+            <span id="cartTotalPrice">S/. 0.00</span>
+        </div>
+        <button class="btn btn-primary btn-checkout" id="checkoutBtn">Proceder al Pago</button>
+        <button class="btn btn-secondary" id="continueShopping">Continuar Comprando</button>
+    </div>
+</div>
+
+<!-- Cart Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</h4>
+                <p>Especialistas en ingeniería metalmecánica y soluciones de precisión. 26 años de experiencia sirviendo a la industria peruana.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="products.html">Productos</a></li>
+                    <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Servicios</h4>
+                <ul>
+                    <li>Soldadura de Alta Precisión</li>
+                    <li>Afilado y Rectificado de Cuchillas</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Urb. La Alameda de la Rivera Calle 4 Mz. K lt. 29 – Ate. Lima</li>
+                    <li><i class="fas fa-phone"></i> +51 951-458-129</li>
+                    <li><i class="fas fa-phone"></i> +51 980-088-991</li>
+                    <li><i class="fas fa-envelope"></i> ttalsac@hotmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="products.js"></script>
+</body>
+</html>
