@@ -138,10 +138,10 @@ body {
 .nav-desktop a {
     color: var(--text);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     transition: var(--transition);
     position: relative;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0;
     font-size: 0.95rem;
     border-radius: 8px;
     letter-spacing: 0.3px;
