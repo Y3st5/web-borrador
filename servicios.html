@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#1a1a1a">
     <title>TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="servicios.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -66,99 +67,12 @@
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="products.html">Productos</a></li>
             <li><a href="Nosotros.html">Sobre Nosotros</a></li>
-            <li><a href="#servicios">Servicios</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 </header>
-
-    <!-- Hero Section with Carousel -->
-    <section class="hero" id="inicio">
-        <div class="hero-carousel">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <div class="hero-content">
-                    <div class="hero-wrapper">
-                        <div class="hero-text">
-                            <h2>INGENIERÍA METALMECÁNICA</h2>
-                            <p>Fabricamos con precisión cada pieza para los desafíos más exigentes de la industria nacional.</p>
-                            <button class="btn btn-primary">Conoce Nuestros Productos</button>
-                        </div>
-                        <div class="hero-image">
-                            <img src="image1.png" alt="Componentes electrónicos e industriales" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-wrapper">
-                        <div class="hero-text">
-                            <h2>PRECISIÓN EN CADA DETALLE</h2>
-                            <p>Nuestros equipos de última generación garantizan tolerancias exactas en todos nuestros proyectos metalmecánicos.</p>
-                            <button class="btn btn-primary">Solicitar Cotización</button>
-                        </div>
-                        <div class="hero-image">
-                            <img src="image2.png" alt="Maquinaria de precisión">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <div class="hero-content">
-                    <div class="hero-wrapper">
-                        <div class="hero-text">
-                            <h2>26 AÑOS DE EXPERIENCIA</h2>
-                            <p>Confianza probada en la industria peruana, con proyectos exitosos en diversos sectores de manufactura.</p>
-                            <button class="btn btn-primary">Nuestra Historia</button>
-                        </div>
-                        <div class="hero-image">
-                            <img src="image1.png" alt="Experiencia industrial" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Controls -->
-            <div class="hero-controls">
-                <button class="hero-arrow hero-prev" aria-label="Slide anterior">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-                <div class="hero-indicators">
-                    <button class="hero-indicator active" data-slide="0" aria-label="Slide 1"></button>
-                    <button class="hero-indicator" data-slide="1" aria-label="Slide 2"></button>
-                    <button class="hero-indicator" data-slide="2" aria-label="Slide 3"></button>
-                </div>
-                <button class="hero-arrow hero-next" aria-label="Siguiente slide">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
     <main>
-    <!-- Sobre Nosotros -->
-    <section class="about" id="sobre-nosotros">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="Equipo-de-trabajo.png" alt="Instalaciones de TALLERES REPRESENTACIONES S.A.C." loading="lazy">
-                </div>
-                <div class="about-text">
-                    <h2>NOSOTROS</h2>
-                    <p>Con una trayectoria consolidada de 26 años en el mercado nacional, TALLERES REPRESENTACIONES S.A.C. se erige como un referente en el sector metalmecánico, especializándose en la manufactura de componentes de alta complejidad y la prestación de servicios de mecánica industrial de precisión.</p>
-                    <a href="Nosotros.html" class="btn btn-primary">Conócenos</a>
-                </div>
-        </div>
     </section>
     <!-- Servicios -->
     <section class="services" id="servicios">
@@ -193,59 +107,97 @@
                     </div>
                 </div>
             </div>
-            <div class="services-cta">
-                <p>¿Interesado?</p>
-                <a href="servicios.html" class="btn btn-primary">conocenos</a>
-            </div>
         </div>
     </section>
-    <!-- Contacto -->
-    <section class="contact" id="contacto">
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="testimonials-bg-pattern"></div>
         <div class="container">
-            <div class="section-header">
-                <h2>Contáctanos</h2>
-                <p>Estamos aquí para ayudarte con tus necesidades de componentes industriales</p>
+            <div class="section-title">
+                <span class="section-badge">Testimonios</span>
+                <h2>Lo Que Dicen Nuestros Clientes</h2>
+                <p>Confianza ganada a través de años de calidad y profesionalismo</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required>
+
+            <div class="testimonials-container">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Excelente servicio de mecanizado. Cumplen con tolerancias exactas y plazos establecidos. El equipo demuestra un professionalism excepcional en cada proyecto."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <span>JM</span>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required>
+                        <div class="testimonial-info">
+                            <h4>Juan Martínez</h4>
+                            <p>Gerente de Producción</p>
+                            <span class="verified-badge">
+                                <i class="fas fa-check-circle"></i> Cliente Verificado
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje *</label>
-                            <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                    </form>
+                    </div>
                 </div>
-                <div class="contact-info">
-                    <div class="info-block">
-                        <h3>📍 Ubicación</h3>
-                        <p>Urb. La Alameda de la Rivera Calle 4 Mz. K lt. 29 – Ate. Lima </p>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    <div class="info-block">
-                        <h3>📞 Teléfono</h3>
-                        <p>+51 951-458-129</p>
-                        <p>+51 980-088-991</p>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="info-block">
-                        <h3>📞 WhatsApp</h3>
-                        <p>+51 980-088-991</p>
+                    <p class="testimonial-text">"Los servicios de soldadura superan nuestras expectativas. Los componentes de alta calidad han reducido significativamente los defectos en nuestra línea de producción."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <span>CR</span>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Carlos Rodríguez</h4>
+                            <p>Ingeniero de Calidad</p>
+                            <span class="verified-badge">
+                                <i class="fas fa-check-circle"></i> Cliente Verificado
+                            </span>
+                        </div>
                     </div>
-                    <div class="info-block">
-                        <h3>✉️ Email</h3>
-                        <p>ventas@ttalsac.com</p>
-                        <p>ttalsac@hotmail.com</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Socios confiables para nuestras operaciones. La atención al detalle y el compromiso con la calidad son incomparables. Recomendamos sus servicios sin dudarlo."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <span>LP</span>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Luis Peña</h4>
+                            <p>Propietario de Taller</p>
+                            <span class="verified-badge">
+                                <i class="fas fa-check-circle"></i> Cliente Verificado
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -293,7 +245,6 @@
             </div>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>

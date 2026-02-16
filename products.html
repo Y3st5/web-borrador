@@ -37,18 +37,14 @@
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="products.html" class="active">Productos</a></li>
                     <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
-                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
                     <li><a href="index.html#contacto">Contacto</a></li>
                 </ul>
             </nav>
-            <button class="cart-button" id="cartButton" aria-label="Carrito de compras">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
+            <a href="https://wa.me/51980088991?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20productos" class="btn-whatsapp-header" target="_blank" aria-label="Contactar por WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
             <button class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -67,7 +63,7 @@
             <li><a href="index.html">Inicio</a></li>
             <li><a href="products.html" class="active">Productos</a></li>
             <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
-            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
             <li><a href="index.html#contacto">Contacto</a></li>
         </ul>
     </nav>
@@ -127,25 +123,6 @@
                         </div>
                     </div>
 
-                    <!-- Price Filter -->
-                    <div class="filter-group">
-                        <h3>Rango de Precio</h3>
-                        <div class="price-range">
-                            <input type="number" id="priceMin" placeholder="Min" value="MIN">
-                            <input type="number" id="priceMax" placeholder="Max" value="MAX">
-                        </div>
-                        <button class="btn-filter" id="applyPriceFilter">Aplicar</button>
-                    </div>
-
-                    <!-- Stock Filter -->
-                    <div class="filter-group">
-                        <h3>Disponibilidad</h3>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" id="inStockOnly">
-                            <span>Solo en Stock</span>
-                        </label>
-                    </div>
-
                     <!-- Clear Filters -->
                     <button class="btn-clear-filters" id="clearFilters">Limpiar Filtros</button>
                 </aside>
@@ -166,9 +143,6 @@
                             <label for="sortSelect">Ordenar por:</label>
                             <select id="sortSelect">
                                 <option value="newest">Más Reciente</option>
-                                <option value="popularity">Más Popular</option>
-                                <option value="price-low">Precio: Menor a Mayor</option>
-                                <option value="price-high">Precio: Mayor a Menor</option>
                                 <option value="name-asc">Nombre: A-Z</option>
                                 <option value="name-desc">Nombre: Z-A</option>
                             </select>
@@ -198,144 +172,46 @@
     </section>
 </main>
 
-<!-- Product Detail Modal -->
-<div class="modal" id="productModal">
-    <div class="modal-content">
-        <button class="modal-close" id="modalClose" aria-label="Cerrar modal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-        <div class="modal-body">
-            <div class="modal-image">
-                <img id="modalProductImage" src="" alt="">
-            </div>
-            <div class="modal-info">
-                <h2 id="modalProductName"></h2>
-                <div class="product-rating">
-                    <div class="stars" id="modalProductRating"></div>
-                    <span id="modalProductReviews">(0 reseñas)</span>
-                </div>
-                <div class="product-price">
-                    <span class="price" id="modalProductPrice">S/. 0.00</span>
-                    <span class="original-price" id="modalProductOriginalPrice" style="display: none;">S/. 0.00</span>
-                </div>
-                <div class="product-stock" id="modalProductStock"></div>
-                <div class="product-description" id="modalProductDescription"></div>
-                <div class="product-specs" id="modalProductSpecs"></div>
-                <div class="modal-actions">
-                    <div class="quantity-selector">
-                        <button id="quantityMinus">-</button>
-                        <input type="number" id="quantityInput" value="1" min="1">
-                        <button id="quantityPlus">+</button>
-                    </div>
-                    <button class="btn btn-primary btn-add-cart" id="modalAddCart">Agregar al Carrito</button>
-                </div>
-                <div class="product-info-boxes">
-                    <div class="info-box">
-                        <i class="fas fa-truck"></i>
-                        <div>
-                            <h4>Envío Rápido</h4>
-                            <p>Entrega en 2-5 días hábiles</p>
-                        </div>
-                    </div>
-                    <div class="info-box">
-                        <i class="fas fa-shield-alt"></i>
-                        <div>
-                            <h4>Garantía</h4>
-                            <p>Calidad garantizada</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Cart Sidebar -->
-<div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-        <h3>Tu Carrito</h3>
-        <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-    </div>
-    <div class="cart-items" id="cartItems">
-        <!-- Cart items will be inserted here -->
-    </div>
-    <div class="cart-empty" id="cartEmpty">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        <p>Tu carrito está vacío</p>
-    </div>
-    <div class="cart-footer">
-        <div class="cart-total">
-            <span>Subtotal:</span>
-            <span id="cartSubtotal">S/. 0.00</span>
-        </div>
-        <div class="cart-total">
-            <span>IGV (18%):</span>
-            <span id="cartIGV">S/. 0.00</span>
-        </div>
-        <div class="cart-total total">
-            <span>Total:</span>
-            <span id="cartTotalPrice">S/. 0.00</span>
-        </div>
-        <button class="btn btn-primary btn-checkout" id="checkoutBtn">Proceder al Pago</button>
-        <button class="btn btn-secondary" id="continueShopping">Continuar Comprando</button>
-    </div>
-</div>
-
-<!-- Cart Overlay -->
-<div class="cart-overlay" id="cartOverlay"></div>
-
 <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</h4>
-                    <p>Especialistas en ingeniería metalmecánica y soluciones de precisión. 26 años de experiencia sirviendo a la industria peruana.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="products.html">Productos</a></li>
-                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Servicios</h4>
-                    <ul>
-                        <li>Soldadura de Alta Precisión</li>
-                        <li>Afilado y Rectificado de Cuchillas</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Urb. La Alameda de la Rivera Calle 4 Mz. K lt. 29 – Ate. Lima</li>
-                        <li><i class="fas fa-phone"></i> +51 951-458-129</li>
-                        <li><i class="fas fa-phone"></i> +51 980-088-991</li>
-                        <li><i class="fas fa-envelope"></i> ttalsac@hotmail.com</li>
-                        <li><i class="fas fa-envelope"></i> ventas@ttalsac.com</li>
-                    </ul>
-                </div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</h4>
+                <p>Especialistas en ingeniería metalmecánica y soluciones de precisión. 26 años de experiencia sirviendo a la industria peruana.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C. Todos los derechos reservados. | <a href="#">Privacidad</a> | <a href="#">Términos de Servicio</a></p>
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="products.html">Productos</a></li>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Servicios</h4>
+                <ul>
+                    <li>Soldadura de Alta Precisión</li>
+                    <li>Afilado y Rectificado de Cuchillas</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Urb. La Alameda de la Rivera Calle 4 Mz. K lt. 29 – Ate. Lima</li>
+                    <li><i class="fas fa-phone"></i> +51 951-458-129</li>
+                    <li><i class="fas fa-phone"></i> +51 980-088-991</li>
+                    <li><i class="fas fa-envelope"></i> ttalsac@hotmail.com</li>
+                    <li><i class="fas fa-envelope"></i> ventas@ttalsac.com</li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C. Todos los derechos reservados. | <a href="#">Privacidad</a> | <a href="#">Términos de Servicio</a></p>
+        </div>
+    </div>
+</footer>
 
 <script src="products.js"></script>
 </body>
