@@ -90,9 +90,29 @@ const products = [
         category: "herramientas",
         image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='120' y='50' width='60' height='150' fill='%231a1a2e' rx='10'/%3E%3Crect x='130' y='60' width='40' height='130' fill='%23ff6b35'/%3E%3Crect x='140' y='210' width='20' height='40' fill='%231a1a2e'/%3E%3C/svg%3E",
         description: "Llave dinamométrica digital 1/2\" 20-200 Nm. Pantalla LCD con memoria de 10 lecturas.",
+    },
+        {
+        id: 14,
+        name: "llantas de acero para camiones",
+        category: "herramientas",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='120' y='50' width='60' height='150' fill='%231a1a2e' rx='10'/%3E%3Crect x='130' y='60' width='40' height='130' fill='%23ff6b35'/%3E%3Crect x='140' y='210' width='20' height='40' fill='%231a1a2e'/%3E%3C/svg%3E",
+        description: "Llantas de acero para camiones de carga pesada. Disponibles en tamaños 17.5 y 22.5 pulgadas.",
     }
 
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // WhatsApp number
 const WHATSAPP_NUMBER = "51980088991";
