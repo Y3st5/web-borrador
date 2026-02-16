@@ -194,7 +194,7 @@ function createProductCard(product) {
                 <p class="product-description">${product.description}</p>
                 <a href="${whatsappUrl}" target="_blank" class="btn-whatsapp">
                     <i class="fab fa-whatsapp"></i>
-                    Consultar por WhatsApp
+                     WhatsApp
                 </a>
             </div>
         </div>
