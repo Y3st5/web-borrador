@@ -65,6 +65,8 @@ const filtersSidebar = document.getElementById('filtersSidebar');
 const filtersToggle = document.getElementById('filtersToggle');
 const filtersClose = document.getElementById('filtersClose');
 const headerSearchInput = document.getElementById('headerSearchInput');
+const mobileSearchInput = document.getElementById('mobileSearchInput');
+const mobileSearchButton = document.getElementById('mobileSearchButton');
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,6 +83,14 @@ function setupEventListeners() {
     clearFilters.addEventListener('click', resetFilters);
     sortSelect.addEventListener('change', handleSort);
     headerSearchInput.addEventListener('input', handleSearch);
+    
+    // Mobile search event listeners
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('input', handleMobileSearch);
+    }
+    if (mobileSearchButton) {
+        mobileSearchButton.addEventListener('click', handleMobileSearchButton);
+    }
     
     filtersToggle.addEventListener('click', () => {
         filtersSidebar.classList.add('active');
@@ -164,7 +174,12 @@ function handleCategoryFilter(e) {
 }
 
 function handleSearch(e) {
-    currentFilter.searchQuery = e.target.value.toLowerCase();
+    const searchValue = e.target.value.toLowerCase();
+    currentFilter.searchQuery = searchValue;
+    // Also sync with mobile search input
+    if (mobileSearchInput) {
+        mobileSearchInput.value = searchValue;
+    }
     renderProducts();
 }
 
@@ -217,6 +232,10 @@ function resetFilters() {
     });
     
     headerSearchInput.value = '';
+    // Also clear mobile search input
+    if (mobileSearchInput) {
+        mobileSearchInput.value = '';
+    }
     sortSelect.value = 'newest';
     
     renderProducts();
@@ -242,4 +261,26 @@ function toggleMobileMenu() {
 function closeMobileMenu() {
     document.getElementById('menuToggle').classList.remove('active');
     document.getElementById('navMobile').classList.remove('active');
+}
+
+// ===== MOBILE SEARCH FUNCTIONS =====
+function handleMobileSearch(e) {
+    const searchValue = e.target.value.toLowerCase();
+    currentFilter.searchQuery = searchValue;
+    // Also sync with header search input
+    if (headerSearchInput) {
+        headerSearchInput.value = searchValue;
+    }
+    renderProducts();
+}
+
+function handleMobileSearchButton(e) {
+    e.preventDefault();
+    const searchValue = mobileSearchInput.value.toLowerCase();
+    currentFilter.searchQuery = searchValue;
+    // Also sync with header search input
+    if (headerSearchInput) {
+        headerSearchInput.value = searchValue;
+    }
+    renderProducts();
 }
