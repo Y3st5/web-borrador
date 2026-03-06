@@ -280,6 +280,18 @@ document.querySelectorAll('.product-card, .catalog-card, .info-block').forEach((
 
 // ===== Activar enlace de navegación según scroll =====
 window.addEventListener('scroll', function () {
+    // En la página de Nosotros.html, NO ejecutamos el scroll handler
+    // Esto mantiene el activo en el enlace de "Nosotros" sin que se quite al hacer scroll
+    // Ya que es una página completa, no una sección dentro de index.html
+    
+    // Verificar si estamos en la página de Nosotros
+    const currentPage = window.location.pathname;
+    if (currentPage.includes('Nosotros.html')) {
+        // No hacer nada con el scroll - mantener el activo
+        return;
+    }
+    
+    // Solo ejecutamos el scroll handler para otras páginas (como index.html)
     let current = '';
 
     const sections = document.querySelectorAll('section');
@@ -291,13 +303,39 @@ window.addEventListener('scroll', function () {
         }
     });
 
-    // Actualizar enlaces activos
+    // Actualizar enlaces activos solo para enlaces de secciones (#...)
     document.querySelectorAll('.nav-desktop a, .nav-mobile a').forEach((link) => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#') && href !== '#') {
+            if (href !== '#' + current) {
+                link.classList.remove('active');
+            }
+            if (href === '#' + current) {
+                link.classList.add('active');
+            }
         }
     });
+});
+
+// ===== Activar automáticamente el enlace de "Nosotros" al cargar la página =====
+document.addEventListener('DOMContentLoaded', function () {
+    // Verificar si estamos en la página de Nosotros
+    const currentPage = window.location.pathname;
+    if (currentPage.includes('Nosotros.html')) {
+        // Activar el enlace de "Nosotros" en el menú desktop
+        document.querySelectorAll('.nav-desktop a').forEach((link) => {
+            if (link.getAttribute('href') === 'Nosotros.html') {
+                link.classList.add('active');
+            }
+        });
+        
+        // Activar el enlace de "Nosotros" en el menú mobile
+        document.querySelectorAll('.nav-mobile a').forEach((link) => {
+            if (link.getAttribute('href') === '#nosotros' || link.getAttribute('href') === 'Nosotros.html') {
+                link.classList.add('active');
+            }
+        });
+    }
 });
 
 // ===== Logging para debug =====

@@ -1,3 +1,32 @@
+// ===== Image Loading Optimization =====
+function initImageLoading() {
+    const heroImages = document.querySelectorAll('.hero-image img');
+    
+    heroImages.forEach(img => {
+        // Verificar si la imagen ya está cargada
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            // Esperar a que cargue
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+        }
+    });
+
+    // También para otras imágenes del sitio
+    const allImages = document.querySelectorAll('img[loading="lazy"]');
+    allImages.forEach(img => {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+        }
+    });
+}
+
 // ===== Hero Carousel =====
 class HeroCarousel {
     constructor() {
@@ -95,6 +124,7 @@ class HeroCarousel {
 // Inicializar carrusel cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     new HeroCarousel();
+    initImageLoading();
 });
 
 // ===== Mobile Menu Toggle =====
@@ -391,6 +421,17 @@ document.querySelectorAll('.product-card, .catalog-card, .info-block').forEach((
 
 // ===== Activar enlace de navegación según scroll =====
 window.addEventListener('scroll', function () {
+    // Obtener la página actual
+    const currentPage = window.location.pathname;
+    
+    // Si estamos en una página que no sea index.html, no ejecutar el scroll handler
+    // Esto evita que se quite el active de los enlaces a páginas completas
+    if (currentPage.includes('Nosotros.html') || 
+        currentPage.includes('servicios.html') || 
+        currentPage.includes('products.html')) {
+        return;
+    }
+
     let current = '';
 
     const sections = document.querySelectorAll('section');
@@ -402,13 +443,73 @@ window.addEventListener('scroll', function () {
         }
     });
 
-    // Actualizar enlaces activos
+    // Si no hay ninguna sección visible, no hacer nada
+    if (!current) {
+        return;
+    }
+
+    // Actualizar enlaces activos SOLO para enlaces de secciones (#...)
     document.querySelectorAll('.nav-desktop a, .nav-mobile a').forEach((link) => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
+        const href = link.getAttribute('href');
+        // Solo procesar enlaces que son secciones (#...)
+        if (href && href.startsWith('#') && href !== '#') {
+            // Quitar active si no es la sección actual
+            if (href !== '#' + current) {
+                link.classList.remove('active');
+            }
+            // Agregar active a la sección visible
+            if (href === '#' + current) {
+                link.classList.add('active');
+            }
         }
     });
+});
+
+// ===== Activar automáticamente el enlace según la página actual =====
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPage = window.location.pathname;
+    
+    // Activar enlace de "Nosotros" si estamos en esa página
+    if (currentPage.includes('Nosotros.html')) {
+        document.querySelectorAll('.nav-desktop a').forEach((link) => {
+            if (link.getAttribute('href') === 'Nosotros.html') {
+                link.classList.add('active');
+            }
+        });
+        document.querySelectorAll('.nav-mobile a').forEach((link) => {
+            if (link.getAttribute('href') === '#nosotros' || link.getAttribute('href') === 'Nosotros.html') {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Activar enlace de "Servicios" si estamos en esa página
+    if (currentPage.includes('servicios.html')) {
+        document.querySelectorAll('.nav-desktop a').forEach((link) => {
+            if (link.getAttribute('href') === 'servicios.html') {
+                link.classList.add('active');
+            }
+        });
+        document.querySelectorAll('.nav-mobile a').forEach((link) => {
+            if (link.getAttribute('href') === '#servicios' || link.getAttribute('href') === 'servicios.html') {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Activar enlace de "Productos" si estamos en esa página
+    if (currentPage.includes('products.html')) {
+        document.querySelectorAll('.nav-desktop a').forEach((link) => {
+            if (link.getAttribute('href') === 'products.html') {
+                link.classList.add('active');
+            }
+        });
+        document.querySelectorAll('.nav-mobile a').forEach((link) => {
+            if (link.getAttribute('href') === 'products.html') {
+                link.classList.add('active');
+            }
+        });
+    }
 });
 
 // ===== Logging para debug =====

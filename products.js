@@ -2,117 +2,47 @@
 const products = [
     {
         id: 1,
-        name: "Eje de Transmisión Industrial",
-        category: "ejes",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='50' y='130' width='200' height='40' fill='%231a1a2e'/%3E%3Ccircle cx='70' cy='150' r='25' fill='%23ff6b35'/%3E%3Ccircle cx='230' cy='150' r='25' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Eje de transmisión de alta precisión fabricado en acero aleado. Ideal para aplicaciones industriales de alta exigencia.",
+        name: "Cuchilla Circular HSS 90 x 25.4 x 1.2 mm",
+        category: "industria-papel",
+        image: "CUCHILLA CIRCULAR HSS.png",
+        description: "Medidas: 90 x 25.4 x 1.2 mm. Recomendado para corte de papel, tubos de cartón.",
     },
     {
         id: 2,
-        name: "Engranaje Cilíndrico Recto",
-        category: "engranajes",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Ccircle cx='150' cy='150' r='90' fill='%231a1a2e'/%3E%3Ccircle cx='150' cy='150' r='70' fill='%23f0f0f0'/%3E%3Cline x1='150' y1='80' x2='150' y2='50' stroke='%23ff6b35' stroke-width='8'/%3E%3Cline x1='210' y1='150' x2='240' y2='150' stroke='%23ff6b35' stroke-width='8'/%3E%3C/svg%3E",
-        description: "Engranaje cilíndrico recto de precisión para sistemas de transmisión. Acabado templado y revenido.",
+        name: "Cuchilla Circular HSS 90 x 25.4 x 1.5 mm",
+        category: "industria-papel",
+        image: "CUCHILLA CIRCULAR HSS.png",
+        description: "Medidas: 90 x 25.4 x 1.5 mm. Recomendado para corte de papel, tubos de cartón.",
     },
     {
         id: 3,
-        name: "Carcasa de Caja de Cambios",
-        category: "carcasas",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='40' y='60' width='220' height='180' fill='%231a1a2e' rx='10'/%3E%3Crect x='60' y='80' width='180' height='140' fill='%23f0f0f0'/%3E%3Ccircle cx='90' cy='110' r='8' fill='%23ff6b35'/%3E%3Ccircle cx='210' cy='110' r='8' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Carcasa fundida de caja de cambios con acabado mecanizado CNC. Fabricada en fundición nodular.",
+        name: "Cuchilla Circular Recubierto con Tungsteno 90 x 25.4 x 1.5 mm",
+        category: "industria-papel",
+        image: "CUCHILLA CIRCULAR RECUBIERTO CON TUGSTENO.png",
+        description: "Medidas: 90 x 25.4 x 1.5 mm. Recomendado para corte de papel, tubos de cartón, tubos de plástico.",
     },
     {
         id: 4,
-        name: "Herramienta de Corte PVD",
-        category: "herramientas",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Cpolygon points='150,50 250,250 50,250' fill='%231a1a2e'/%3E%3Cpolygon points='150,70 230,240 70,240' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Herramienta de corte recubierta con PVD para máquinas CNC. Recubrimiento TiN de alta duración.",
+        name: "DOCTOR BLADE ",
+        category: "industria-grafica",
+        image: "DOCTOR BLADE.png",
+        description: "Conocidas tambièn como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica. Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial. Con diferentes formas del filo de la cuchilla.y en variedad de medidas y espesores.",
     },
     {
         id: 5,
-        name: "Rodamiento Angular de Contacto",
-        category: "consumibles",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Ccircle cx='150' cy='150' r='80' fill='%231a1a2e'/%3E%3Ccircle cx='150' cy='150' r='60' fill='%23f0f0f0'/%3E%3Ccircle cx='150' cy='150' r='40' fill='%231a1a2e'/%3E%3C/svg%3E",
-        description: "Rodamiento de contacto angular de precisión clase ABEC-7. Ideal para aplicaciones de alta velocidad.",
+        name: "EJES DE ALUMINIO ANODIZADO",
+        category: "industria-plastica",
+        image: "EJES DE ALUMINIO ANODIZADO.png",
+        description: "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica. Medidas: Ø50 mm x 2.00 m. Consultar por otras medidas.",
     },
     {
         id: 6,
-        name: "Espárrago Métrico M20",
-        category: "consumibles",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='140' y='40' width='20' height='220' fill='%231a1a2e'/%3E%3Ccircle cx='150' cy='220' r='15' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Espárrago métrico M20 x 100 en acero inoxidable 304. Clase de resistencia 8.8.",
-    },
-    {
-        id: 7,
-        name: "Cilindro Neumático Doble Efecto",
-        category: "ejes",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='60' y='120' width='180' height='60' fill='%231a1a2e' rx='30'/%3E%3Ccircle cx='80' cy='150' r='15' fill='%23ff6b35'/%3E%3Ccircle cx='220' cy='150' r='15' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Cilindro neumásuro doble efecto 40x200mm ISO 6432. Presión máxima 10 bar.",
-    },
-    {
-        id: 8,
-        name: "Placa Base de Precisión",
-        category: "carcasas",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='40' y='80' width='220' height='140' fill='%231a1a2e'/%3E%3Ccircle cx='70' cy='100' r='6' fill='%23ff6b35'/%3E%3Ccircle cx='230' cy='100' r='6' fill='%23ff6b35'/%3E%3Ccircle cx='70' cy='200' r='6' fill='%23ff6b35'/%3E%3Ccircle cx='230' cy='200' r='6' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Placa base de precisión con cavidades mecanizadas. Fabricada en aluminio 7075 con acabado anodizado.",
-    },
-    {
-        id: 9,
-        name: "Fluido de Corte Sintético",
-        category: "consumibles",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Cpath d='M150 50 Q180 120 180 200 Q180 240 150 250 Q120 240 120 200 Q120 120 150 50' fill='%231a1a2e'/%3E%3Cpath d='M150 70 Q170 120 170 200 Q170 235 150 242 Q130 235 130 200 Q130 120 150 70' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Fluido de corte sintético de alta performance. Presentación bidón de 20 litros.",
-    },
-    {
-        id: 10,
-        name: "Sensor de Proximidad Inductivo",
-        category: "herramientas",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='100' y='80' width='100' height='140' fill='%231a1a2e' rx='8'/%3E%3Ccircle cx='150' cy='140' r='25' fill='%23ff6b35'/%3E%3Crect x='140' y='240' width='20' height='30' fill='%231a1a2e'/%3E%3C/svg%3E",
-        description: "Sensor de proximidad inductivo M18 PNP DC 24V. Rango de detección 10mm.",
-    },
-    {
-        id: 11,
-        name: "Tuerca Nylon Autoblocante",
-        category: "consumibles",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Cpolygon points='150,70 220,120 220,220 150,270 80,220 80,120' fill='%231a1a2e'/%3E%3Cpolygon points='150,90 200,130 200,210 150,250 100,210 100,130' fill='%23ff6b35'/%3E%3C/svg%3E",
-        description: "Tuerca nylon autoblocante M10 DIN 985. Acero inoxidable A2 de alta calidad.",
-    },
-    {
-        id: 12,
-        name: "Piñón de Accionamiento",
-        category: "engranajes",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Ccircle cx='150' cy='150' r='60' fill='%231a1a2e'/%3E%3Ccircle cx='150' cy='150' r='40' fill='%23f0f0f0'/%3E%3Cline x1='150' y1='110' x2='150' y2='90' stroke='%23ff6b35' stroke-width='6'/%3E%3Cline x1='190' y1='150' x2='210' y2='150' stroke='%23ff6b35' stroke-width='6'/%3E%3C/svg%3E",
-        description: "Piñón de accionamiento módulo 3. Fabricado en acero C45 con acabado rectificado.",
-    },
-    {
-        id: 13,
-        name: "Llave Dinamométrica Digital",
-        category: "herramientas",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='120' y='50' width='60' height='150' fill='%231a1a2e' rx='10'/%3E%3Crect x='130' y='60' width='40' height='130' fill='%23ff6b35'/%3E%3Crect x='140' y='210' width='20' height='40' fill='%231a1a2e'/%3E%3C/svg%3E",
-        description: "Llave dinamométrica digital 1/2\" 20-200 Nm. Pantalla LCD con memoria de 10 lecturas.",
-    },
-        {
-        id: 14,
-        name: "llantas de acero para camiones",
-        category: "herramientas",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f0f0f0' width='300' height='300'/%3E%3Crect x='120' y='50' width='60' height='150' fill='%231a1a2e' rx='10'/%3E%3Crect x='130' y='60' width='40' height='130' fill='%23ff6b35'/%3E%3Crect x='140' y='210' width='20' height='40' fill='%231a1a2e'/%3E%3C/svg%3E",
-        description: "Llantas de acero para camiones de carga pesada. Disponibles en tamaños 17.5 y 22.5 pulgadas.",
+        name: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS",
+        category: "manufactura",
+        image: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS.png",
+        description: "Para uso industrial. No requiere herramientas y/o electricidad. Coloque el rollo, gire la manivela y la etiqueta queda a disposición del operador. Permite un trabajo limpio y ordenado. Ancho máximo: 105 mm.",
     }
-
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // WhatsApp number
 const WHATSAPP_NUMBER = "51980088991";
@@ -120,7 +50,7 @@ const WHATSAPP_NUMBER = "51980088991";
 // ===== STATE MANAGEMENT =====
 let filteredProducts = [...products];
 let currentFilter = {
-    categories: new Set(['ejes', 'engranajes', 'carcasas', 'herramientas', 'consumibles']),
+    categories: new Set(['industria-papel', 'industria-grafica', 'industria-plastica', 'manufactura']),
     searchQuery: ''
 };
 
@@ -194,7 +124,7 @@ function createProductCard(product) {
                 <p class="product-description">${product.description}</p>
                 <a href="${whatsappUrl}" target="_blank" class="btn-whatsapp">
                     <i class="fab fa-whatsapp"></i>
-                     WhatsApp
+                    WhatsApp
                 </a>
             </div>
         </div>
@@ -278,7 +208,7 @@ function handleSort(e) {
 
 function resetFilters() {
     currentFilter = {
-        categories: new Set(['ejes', 'engranajes', 'carcasas', 'herramientas', 'consumibles']),
+        categories: new Set(['industria-papel', 'industria-grafica', 'industria-plastica', 'manufactura']),
         searchQuery: ''
     };
     
@@ -296,11 +226,10 @@ function resetFilters() {
 // ===== UTILITY FUNCTIONS =====
 function getCategoryLabel(category) {
     const labels = {
-        'ejes': 'Ejes y Componentes',
-        'engranajes': 'Engranajes',
-        'carcasas': 'Carcasas',
-        'herramientas': 'Herramientas',
-        'consumibles': 'Consumibles'
+        'industria-papel': 'Industria del Papel',
+        'industria-grafica': 'Industria Gráfica',
+        'industria-plastica': 'Industria Plástica',
+        'manufactura': 'Manufactura'
     };
     return labels[category] || category;
 }

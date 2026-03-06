@@ -179,6 +179,12 @@ section {
     width: 100%;
 }
 
+.nav-desktop a:hover{
+    background-color: rgba(255, 107, 53, 0.08);
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
 .search-box {
     position: relative;
     display: flex;
@@ -475,7 +481,7 @@ section {
 
 /* Logo sizing */
 .logo img {
-    height: 100px;
+    height: 70px;
     width: auto;
     padding: auto;
 }
