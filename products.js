@@ -41,6 +41,13 @@ const products = [
         category: "manufactura",
         image: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS.png",
         description: "Para uso industrial. No requiere herramientas y/o electricidad. Coloque el rollo, gire la manivela y la etiqueta queda a disposición del operador. Permite un trabajo limpio y ordenado. Ancho máximo: 105 mm.",
+    },
+    {
+        id: 7,
+        name: "CUCHILLAS DENTADAS",
+        category: "industria-papel",
+        image: "CUCHILLAS DENTADAS.jpg",
+        description: "Cuchillas con filos dentados de diferentes medidas para uso en máquinas de embalaje de cajas.",
     }
 ];
 
