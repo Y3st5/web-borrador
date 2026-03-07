@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
 <!-- Skip to main content for accessibility -->
 <a href="#productos-main" class="skip-link">Saltar al contenido principal</a>
 
@@ -189,15 +190,16 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
-            <div class="footer-section">
-                <h4>Navegación</h4>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="products.html">Productos</a></li>
-                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="products.html">Productos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
                 <div class="footer-section">
                     <h4>Contacto</h4>
                     <ul class="contact-info">
@@ -214,6 +216,50 @@
         </div>
     </div>
 </footer>
+
+<!-- Product Modal -->
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose" aria-label="Cerrar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="modal-body">
+            <div class="modal-image">
+                <img id="modalProductImage" src="" alt="">
+            </div>
+            <div class="modal-info">
+                <div class="product-category" id="modalProductCategory"></div>
+                <h2 id="modalProductName"></h2>
+                <div class="product-description" id="modalProductDescription"></div>
+                
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">ID de Producto</span>
+                        <span class="spec-value" id="modalProductId"></span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Categoría</span>
+                        <span class="spec-value" id="modalProductCategoryName"></span>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="" id="modalWhatsappBtn" class="btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Consultar por WhatsApp
+                    </a>
+                </div>
+
+                <div class="product-info-boxes">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="products.js"></script>
 </body>

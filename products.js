@@ -75,6 +75,17 @@ const headerSearchInput = document.getElementById('headerSearchInput');
 const mobileSearchInput = document.getElementById('mobileSearchInput');
 const mobileSearchButton = document.getElementById('mobileSearchButton');
 
+// Modal Elements
+const productModal = document.getElementById('productModal');
+const modalClose = document.getElementById('modalClose');
+const modalProductImage = document.getElementById('modalProductImage');
+const modalProductCategory = document.getElementById('modalProductCategory');
+const modalProductName = document.getElementById('modalProductName');
+const modalProductDescription = document.getElementById('modalProductDescription');
+const modalProductId = document.getElementById('modalProductId');
+const modalProductCategoryName = document.getElementById('modalProductCategoryName');
+const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
+
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
@@ -108,6 +119,60 @@ function setupEventListeners() {
     
     document.getElementById('menuToggle')?.addEventListener('click', toggleMobileMenu);
     document.getElementById('mobileClose')?.addEventListener('click', closeMobileMenu);
+    
+    // Modal event listeners
+    modalClose.addEventListener('click', closeModal);
+    productModal.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && productModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    // Product card click delegation
+    productsGrid.addEventListener('click', function(e) {
+        console.log('Click detected on productsGrid');
+        const card = e.target.closest('.product-card');
+        if (card) {
+            console.log('Product card clicked');
+            const productId = parseInt(card.dataset.productId);
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                console.log('Opening modal for product:', product.name);
+                openModal(product);
+            }
+        }
+    });
+}
+
+// ===== MODAL FUNCTIONS =====
+function openModal(product) {
+    // Populate modal with product data
+    modalProductImage.src = product.image;
+    modalProductImage.alt = product.name;
+    modalProductCategory.textContent = getCategoryLabel(product.category);
+    modalProductName.textContent = product.name;
+    modalProductDescription.textContent = product.description;
+    modalProductId.textContent = `#${product.id.toString().padStart(4, '0')}`;
+    modalProductCategoryName.textContent = getCategoryLabel(product.category);
+    
+    // Set WhatsApp link
+    const whatsappMessage = `Hola,%20me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}%20(ID:%20${product.id})`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+    modalWhatsappBtn.href = whatsappUrl;
+    
+    // Show modal
+    productModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    productModal.classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 // ===== PRODUCT RENDERING =====
@@ -131,7 +196,7 @@ function createProductCard(product) {
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
     
     return `
-        <div class="product-card">
+        <div class="product-card" data-product-id="${product.id}">
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}">
             </div>
