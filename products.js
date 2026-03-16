@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "Cuchilla Circular HSS 90 x 25.4 x 1.2 mm",
         category: "industria-papel",
-        image: "/image/CUCHILLA CIRCULAR HSS.png",
+        image: "CUCHILLA CIRCULAR HSS.png",
         description: "Medidas: 90 x 25.4 x 1.2 mm. Recomendado para corte de papel, tubos de cartón.",
         fullDescription: [
             "Medidas: 90 x 25.4 x 1.2 mm.",
@@ -15,7 +15,7 @@ const products = [
         id: 2,
         name: "Cuchilla Circular HSS 90 x 25.4 x 1.5 mm",
         category: "industria-papel",
-        image: "/image/CUCHILLA CIRCULAR HSS.png",
+        image: "CUCHILLA CIRCULAR HSS.png",
         description: "Medidas: 90 x 25.4 x 1.5 mm. Recomendado para corte de papel, tubos de cartón.",
         fullDescription: [
             "Medidas: 90 x 25.4 x 1.5 mm.",
@@ -26,7 +26,7 @@ const products = [
         id: 3,
         name: "Cuchilla Circular Recubierto con Tungsteno 90 x 25.4 x 1.5 mm",
         category: "industria-papel",
-        image: "/image/CUCHILLA CIRCULAR RECUBIERTO CON TUGSTENO.png",
+        image: "CUCHILLA CIRCULAR RECUBIERTO CON TUGSTENO.png",
         description: "Medidas: 90 x 25.4 x 1.5 mm. Recomendado para corte de papel, tubos de cartón, tubos de plástico.",
         fullDescription: [
             "Medidas: 90 x 25.4 x 1.5 mm.",
@@ -37,7 +37,7 @@ const products = [
         id: 4,
         name: "DOCTOR BLADE ",
         category: "industria-grafica",
-        image: "/image/DOCTOR BLADE.png",
+        image: "DOCTOR BLADE.png",
         description: "Conocidas también como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica. Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial. Con diferentes formas del filo de la cuchilla y en variedad de medidas y espesores.",
         fullDescription: [
             "Conocidas tambièn como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica.",
@@ -49,7 +49,7 @@ const products = [
         id: 5,
         name: "EJES DE ALUMINIO ANODIZADO",
         category: "industria-plastica",
-        image: "/image/EJES DE ALUMINIO ANODIZADO.png",
+        image: "EJES DE ALUMINIO ANODIZADO.png",
         description: "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica. Medidas: Ø50 mm x 2.00 m. Consultar por otras medidas.",
         fullDescription: [
             "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica.",
@@ -61,7 +61,7 @@ const products = [
         id: 6,
         name: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS",
         category: "manufactura",
-        image: "/image/DISPENSADORES DE ETIQUETAS AUTOADHESIVAS.png",
+        image: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS.png",
         description: "Para uso industrial. No requiere herramientas y/o electricidad. Coloque el rollo, gire la manivela y la etiqueta queda a disposición del operador. Permite un trabajo limpio y ordenado. Ancho máximo: 105 mm.",
         fullDescription: [
             "Para uso industrial. No requiere herramientas y/o electricidad.",
@@ -74,7 +74,7 @@ const products = [
         id: 7,
         name: "CUCHILLAS DENTADAS",
         category: "industria-papel",
-        image: "/image/CUCHILLAS DENTADAS.jpg",
+        image: "CUCHILLAS DENTADAS.jpg",
         description: "Cuchillas con filos dentados de diferentes medidas para uso en máquinas de embalaje de cajas.",
         fullDescription: [
             "Cuchillas con filos dentados de diferentes medidas para uso en máquinas de embalaje de cajas."
