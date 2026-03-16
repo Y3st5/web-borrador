@@ -4,50 +4,81 @@ const products = [
         id: 1,
         name: "Cuchilla Circular HSS 90 x 25.4 x 1.2 mm",
         category: "industria-papel",
-        image: "CUCHILLA CIRCULAR HSS.png",
+        image: "/image/CUCHILLA CIRCULAR HSS.png",
         description: "Medidas: 90 x 25.4 x 1.2 mm. Recomendado para corte de papel, tubos de cartón.",
+        fullDescription: [
+            "Medidas: 90 x 25.4 x 1.2 mm.",
+            "Recomendado para corte de papel, tubos de cartón."
+        ]
     },
     {
         id: 2,
         name: "Cuchilla Circular HSS 90 x 25.4 x 1.5 mm",
         category: "industria-papel",
-        image: "CUCHILLA CIRCULAR HSS.png",
+        image: "/image/CUCHILLA CIRCULAR HSS.png",
         description: "Medidas: 90 x 25.4 x 1.5 mm. Recomendado para corte de papel, tubos de cartón.",
+        fullDescription: [
+            "Medidas: 90 x 25.4 x 1.5 mm.",
+            "Recomendado para corte de papel, tubos de cartón."
+        ]
     },
     {
         id: 3,
         name: "Cuchilla Circular Recubierto con Tungsteno 90 x 25.4 x 1.5 mm",
         category: "industria-papel",
-        image: "CUCHILLA CIRCULAR RECUBIERTO CON TUGSTENO.png",
+        image: "/image/CUCHILLA CIRCULAR RECUBIERTO CON TUGSTENO.png",
         description: "Medidas: 90 x 25.4 x 1.5 mm. Recomendado para corte de papel, tubos de cartón, tubos de plástico.",
+        fullDescription: [
+            "Medidas: 90 x 25.4 x 1.5 mm.",
+            "Recomendado para corte de papel, tubos de cartón, tubos de plástico."
+        ]
     },
     {
         id: 4,
         name: "DOCTOR BLADE ",
         category: "industria-grafica",
-        image: "DOCTOR BLADE.png",
-        description: "Conocidas tambièn como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica. Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial. Con diferentes formas del filo de la cuchilla.y en variedad de medidas y espesores.",
+        image: "/image/DOCTOR BLADE.png",
+        description: "Conocidas también como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica. Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial. Con diferentes formas del filo de la cuchilla y en variedad de medidas y espesores.",
+        fullDescription: [
+            "Conocidas tambièn como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica.",
+            "Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial.",
+            "Con diferentes formas del filo de la cuchilla.y en variedad de medidas y espesores."
+        ]
     },
     {
         id: 5,
         name: "EJES DE ALUMINIO ANODIZADO",
         category: "industria-plastica",
-        image: "EJES DE ALUMINIO ANODIZADO.png",
+        image: "/image/EJES DE ALUMINIO ANODIZADO.png",
         description: "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica. Medidas: Ø50 mm x 2.00 m. Consultar por otras medidas.",
+        fullDescription: [
+            "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica.",
+            "medidas: Ø50 mm x 2.00 m.",
+            "Consultar por otras medidas."
+        ]
     },
     {
         id: 6,
         name: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS",
         category: "manufactura",
-        image: "DISPENSADORES DE ETIQUETAS AUTOADHESIVAS.png",
+        image: "/image/DISPENSADORES DE ETIQUETAS AUTOADHESIVAS.png",
         description: "Para uso industrial. No requiere herramientas y/o electricidad. Coloque el rollo, gire la manivela y la etiqueta queda a disposición del operador. Permite un trabajo limpio y ordenado. Ancho máximo: 105 mm.",
+        fullDescription: [
+            "Para uso industrial. No requiere herramientas y/o electricidad.",
+            "Coloque el rollo, gire la manivela y la etiqueta queda a disposición del operador.",
+            "Permite un trabajo limpio y ordenado.",
+            "Ancho máximo: 105 mm."
+        ]
     },
     {
         id: 7,
         name: "CUCHILLAS DENTADAS",
         category: "industria-papel",
-        image: "CUCHILLAS DENTADAS.jpg",
+        image: "/image/CUCHILLAS DENTADAS.jpg",
         description: "Cuchillas con filos dentados de diferentes medidas para uso en máquinas de embalaje de cajas.",
+        fullDescription: [
+            "Cuchillas con filos dentados de diferentes medidas para uso en máquinas de embalaje de cajas."
+        ]
     }
 ];
 
@@ -156,7 +187,14 @@ function openModal(product) {
     modalProductImage.alt = product.name;
     modalProductCategory.textContent = getCategoryLabel(product.category);
     modalProductName.textContent = product.name;
-    modalProductDescription.textContent = product.description;
+    
+    // Use fullDescription if available, otherwise use description
+    if (product.fullDescription) {
+        modalProductDescription.innerHTML = product.fullDescription.map(line => `<p>${line}</p>`).join('');
+    } else {
+        modalProductDescription.textContent = product.description;
+    }
+    
     modalProductId.textContent = `#${product.id.toString().padStart(4, '0')}`;
     modalProductCategoryName.textContent = getCategoryLabel(product.category);
     
