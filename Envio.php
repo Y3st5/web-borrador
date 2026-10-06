@@ -43,7 +43,7 @@ $errors = [];
 
 if (empty($nombre)) {
     $errors[] = 'El nombre es obligatorio';
-} elseif (!preg_match('/^[a-zA-ZÀ-ÿ\s]+$/', $nombre)) {
+} elseif (!preg_match('/^[a-zA-ZÀ-ÿ ]+$/', $nombre)) {
     $errors[] = 'El nombre solo puede contener letras y espacios';
 }
 
@@ -76,12 +76,12 @@ if (!empty($errors)) {
 
 // Configuración del email
 $to = 'ttalsac@hotmail.com'; // Cambia esto por tu email real
-$subject = 'Consulta desde sitio web - ' . $nombre;
+$subject = 'Consulta desde sitio web - ' . str_replace(["\r", "\n"], ' ', $nombre);
 $headers = [
     'MIME-Version: 1.0',
     'Content-type: text/html; charset=UTF-8',
-    'From: ' . $email,
-    'Reply-To: ' . $email,
+    'From: ' . str_replace(["\r", "\n"], '', $email),
+    'Reply-To: ' . str_replace(["\r", "\n"], '', $email),
     'X-Mailer: PHP/' . phpversion()
 ];
 

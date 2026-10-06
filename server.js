@@ -1,33 +1,61 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const querystring = require('querystring');
 const multiparty = require('multiparty');
+
+const MIME_TYPES = {
+    '.html': 'text/html; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.js': 'application/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp',
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.txt': 'text/plain; charset=utf-8'
+};
 
 const server = http.createServer((req, res) => {
     // Handle static files
-    if (req.method === 'GET') {
-        let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
+    if (req.method === 'GET' || req.method === 'HEAD') {
+        let urlPath;
+        try {
+            urlPath = decodeURIComponent(req.url.split('?')[0]);
+        } catch (e) {
+            res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+            res.end('Bad request');
+            return;
+        }
 
-        // Remove query parameters
-        filePath = filePath.split('?')[0];
+        // Resolve and block path traversal (e.g. /../../etc/passwd)
+        const filePath = path.resolve(__dirname, '.' + path.posix.normalize(urlPath));
+        if (filePath !== __dirname && !filePath.startsWith(__dirname + path.sep)) {
+            res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
+            res.end('Forbidden');
+            return;
+        }
 
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end('File not found');
-                return;
-            }
+        fs.stat(filePath, (statErr, stats) => {
+            const target = !statErr && stats.isDirectory()
+                ? path.join(filePath, 'index.html')
+                : filePath;
 
-            // Set content type based on file extension
-            const ext = path.extname(filePath);
-            let contentType = 'text/html';
-            if (ext === '.css') contentType = 'text/css';
-            if (ext === '.js') contentType = 'application/javascript';
-            if (ext === '.png') contentType = 'image/png';
+            fs.readFile(target, (err, data) => {
+                if (err) {
+                    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+                    res.end('File not found');
+                    return;
+                }
 
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(data);
+                const contentType = MIME_TYPES[path.extname(target).toLowerCase()] || 'application/octet-stream';
+                res.writeHead(200, { 'Content-Type': contentType });
+                res.end(req.method === 'HEAD' ? undefined : data);
+            });
         });
     }
 
