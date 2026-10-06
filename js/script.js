@@ -19,11 +19,10 @@ function initHeroCarousel() {
     if (slides.length === 0) return;
 
     const indicators = document.querySelectorAll('.hero-indicator');
-    const nextBtn = document.querySelector('.hero-next');
-    const prevBtn = document.querySelector('.hero-prev');
     const carousel = document.querySelector('.hero-carousel');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const autoplayDelay = 6000;
+    const SWIPE_THRESHOLD = 50;
 
     let currentSlide = 0;
     let autoplayTimer = null;
@@ -33,6 +32,7 @@ function initHeroCarousel() {
 
         slides.forEach((slide, i) => {
             slide.classList.toggle('active', i === currentSlide);
+            slide.style.transform = '';
         });
 
         indicators.forEach((indicator, i) => {
@@ -47,6 +47,7 @@ function initHeroCarousel() {
 
     function startAutoplay() {
         stopAutoplay();
+        if (reduceMotion) return;
         autoplayTimer = setInterval(() => showSlide(currentSlide + 1), autoplayDelay);
     }
 
@@ -57,24 +58,104 @@ function initHeroCarousel() {
         }
     }
 
-    if (nextBtn) nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
-    if (prevBtn) prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
-
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             showSlide(index);
-            if (autoplayTimer) startAutoplay();
+            startAutoplay();
         });
     });
 
+    // ===== Arrastre (touch swipe + mouse drag) =====
     if (carousel) {
-        carousel.addEventListener('mouseenter', stopAutoplay);
-        carousel.addEventListener('mouseleave', () => {
-            if (!reduceMotion) startAutoplay();
+        let startX = 0;
+        let deltaX = 0;
+        let isDragging = false;
+        let didDrag = false;
+
+        const activeSlide = () => slides[currentSlide];
+
+        function dragStart(clientX) {
+            startX = clientX;
+            deltaX = 0;
+            isDragging = true;
+            didDrag = false;
+            carousel.classList.add('is-dragging');
+            stopAutoplay();
+        }
+
+        function dragMove(clientX) {
+            if (!isDragging) return;
+            deltaX = clientX - startX;
+            if (Math.abs(deltaX) > 5) didDrag = true;
+            const slide = activeSlide();
+            if (slide && !reduceMotion) {
+                slide.style.transform = `translateX(${deltaX}px)`;
+            }
+        }
+
+        function dragEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            carousel.classList.remove('is-dragging');
+
+            const slide = activeSlide();
+            if (slide) slide.style.transform = '';
+
+            if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+                showSlide(deltaX < 0 ? currentSlide + 1 : currentSlide - 1);
+            }
+            deltaX = 0;
+            startAutoplay();
+
+            if (didDrag) {
+                setTimeout(() => { didDrag = false; }, 300);
+            }
+        }
+
+        // Touch (móvil / tablet)
+        carousel.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.hero-indicator')) return;
+            dragStart(e.touches[0].clientX);
+        }, { passive: true });
+
+        carousel.addEventListener('touchmove', (e) => {
+            dragMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', dragEnd);
+        carousel.addEventListener('touchcancel', dragEnd);
+
+        // Mouse (desktop)
+        carousel.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.hero-indicator')) return;
+            dragStart(e.clientX);
         });
+
+        carousel.addEventListener('mousemove', (e) => {
+            dragMove(e.clientX);
+        });
+
+        carousel.addEventListener('mouseup', dragEnd);
+        carousel.addEventListener('mouseleave', dragEnd);
+
+        // Cancelar el clic accidental tras un arrastre (enlaces, botones)
+        carousel.addEventListener('click', (e) => {
+            if (didDrag) {
+                e.preventDefault();
+                e.stopPropagation();
+                didDrag = false;
+            }
+        }, true);
+
+        // Pausar el autoplay al pasar el mouse o al enfocar
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
         carousel.addEventListener('focusin', stopAutoplay);
-        carousel.addEventListener('focusout', () => {
-            if (!reduceMotion) startAutoplay();
+        carousel.addEventListener('focusout', startAutoplay);
+
+        // Evitar el arrastre nativo de las imágenes
+        carousel.querySelectorAll('img').forEach((img) => {
+            img.addEventListener('dragstart', (e) => e.preventDefault());
         });
     }
 
@@ -86,8 +167,7 @@ function initHeroCarousel() {
         if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
     });
 
-    // Con "reducir movimiento" activo no se autoavanza
-    if (!reduceMotion) startAutoplay();
+    startAutoplay();
 }
 
 // ===== Menú móvil =====
