@@ -246,7 +246,7 @@
 }
 
 .service-features-list li i {
-    color: #ff6b35;
+    color: var(--accent);
     font-size: 1.2rem;
     margin-top: 3px;
     flex-shrink: 0;
@@ -305,7 +305,7 @@
 }
 
 .contact-cta-content .btn-primary {
-    background: linear-gradient(135deg, #ff6b35, #ff8f5a);
+    background: linear-gradient(135deg, var(--accent) 0%, #b83a15 100%);
     color: white;
     padding: 16px 40px;
     font-size: 1.1rem;
@@ -318,7 +318,7 @@
 .contact-cta-content .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
-    background: linear-gradient(135deg, #ff8f5a, #ff6b35);
+    background: linear-gradient(135deg, #b83a15, var(--accent));
 }
 
 /* ===== Testimonials Section ===== */
@@ -393,7 +393,7 @@
 
 .section-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #ff6b35, #ff5722);
+    background: linear-gradient(135deg, var(--accent) 0%, #b83a15 100%);
     color: white;
     padding: 8px 20px;
     border-radius: 25px;
@@ -456,12 +456,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ff6b35;
+    color: var(--accent);
     font-size: 1.3rem;
 }
 
 .testimonial-card:hover .testimonial-quote-icon {
-    background: #ff6b35;
+    background: var(--accent);
     color: white;
 }
 
@@ -482,7 +482,7 @@
     font-style: italic;
     line-height: 1.9;
     font-size: 1.05rem;
-    border-left: 3px solid #ff6b35;
+    border-left: 3px solid var(--accent);
     padding: 15px 15px 15px 20px;
     background: rgba(255, 107, 53, 0.03);
     border-radius: 0 8px 8px 0;
@@ -512,7 +512,7 @@
     flex-shrink: 0;
 }
 
-.testimonial-info h4 {
+.testimonial-info h3 {
     margin-bottom: 4px;
     color: #1a1a2e;
     font-size: 1.1rem;
@@ -530,9 +530,9 @@
     align-items: center;
     gap: 5px;
     font-size: 0.75rem;
-    color: #28a745;
+    color: #157a33;
     font-weight: 500;
-    background: rgba(40, 167, 69, 0.1);
+    background: rgba(21, 122, 51, 0.12);
     padding: 4px 10px;
     border-radius: 15px;
 }

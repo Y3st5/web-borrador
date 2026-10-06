@@ -35,14 +35,14 @@ const products = [
     },
     {
         id: 4,
-        name: "DOCTOR BLADE ",
+        name: "DOCTOR BLADE",
         category: "industria-grafica",
         image: "img/doctor-blade.webp",
         description: "Conocidas también como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica. Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial. Con diferentes formas del filo de la cuchilla y en variedad de medidas y espesores.",
         fullDescription: [
-            "Conocidas tambièn como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica.",
+            "Conocidas también como raclas, cuchillas o rasquetas, son una pieza importante en la industria flexográfica.",
             "Disponibles en acero inoxidable, acero al carbono, con revestimiento cerámico y con recubrimiento especial.",
-            "Con diferentes formas del filo de la cuchilla.y en variedad de medidas y espesores."
+            "Con diferentes formas del filo de la cuchilla y en variedad de medidas y espesores."
         ]
     },
     {
@@ -53,7 +53,7 @@ const products = [
         description: "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica. Medidas: Ø50 mm x 2.00 m. Consultar por otras medidas.",
         fullDescription: [
             "Livianos pero con una superficie dura resistente a la fricción. Usado en la industria plástica.",
-            "medidas: Ø50 mm x 2.00 m.",
+            "Medidas: Ø50 mm x 2.00 m.",
             "Consultar por otras medidas."
         ]
     },
@@ -91,6 +91,7 @@ let currentFilter = {
     categories: new Set(['industria-papel', 'industria-grafica', 'industria-plastica', 'manufactura']),
     searchQuery: ''
 };
+let lastFocusedElement = null;
 
 // ===== DOM ELEMENTS =====
 const productsGrid = document.getElementById('productsGrid');
@@ -102,9 +103,7 @@ const clearFilters = document.getElementById('clearFilters');
 const filtersSidebar = document.getElementById('filtersSidebar');
 const filtersToggle = document.getElementById('filtersToggle');
 const filtersClose = document.getElementById('filtersClose');
-const headerSearchInput = document.getElementById('headerSearchInput');
-const mobileSearchInput = document.getElementById('mobileSearchInput');
-const mobileSearchButton = document.getElementById('mobileSearchButton');
+const searchFilterInput = document.querySelector('.search-filter-input');
 
 // Modal Elements
 const productModal = document.getElementById('productModal');
@@ -119,43 +118,47 @@ const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
+    readUrlQuery();
     renderProducts();
     setupEventListeners();
 });
+
+// ===== URL QUERY (búsqueda desde el header/menú de otras páginas) =====
+function readUrlQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const q = (params.get('q') || '').trim();
+    if (!q) return;
+    currentFilter.searchQuery = q.toLowerCase();
+    syncSearchInputs(q);
+}
 
 // ===== EVENT LISTENERS =====
 function setupEventListeners() {
     filterCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', handleCategoryFilter);
     });
-    
+
     clearFilters.addEventListener('click', resetFilters);
     sortSelect.addEventListener('change', handleSort);
-    headerSearchInput.addEventListener('input', handleSearch);
+    if (searchFilterInput) {
+        searchFilterInput.addEventListener('input', (e) => setSearchQuery(e.target.value));
+    }
 
-    const headerSearchForm = document.getElementById('headerSearch');
-    if (headerSearchForm) {
-        headerSearchForm.addEventListener('submit', (e) => e.preventDefault());
-    }
-    
-    // Mobile search event listeners
-    if (mobileSearchInput) {
-        mobileSearchInput.addEventListener('input', handleMobileSearch);
-    }
-    if (mobileSearchButton) {
-        mobileSearchButton.addEventListener('click', handleMobileSearchButton);
-    }
-    
+    document.querySelectorAll('.mobile-search').forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = form.querySelector('.search-input');
+            setSearchQuery(input ? input.value : '');
+        });
+    });
+
     filtersToggle.addEventListener('click', () => {
         filtersSidebar.classList.add('active');
     });
     filtersClose.addEventListener('click', () => {
         filtersSidebar.classList.remove('active');
     });
-    
-    document.getElementById('menuToggle')?.addEventListener('click', toggleMobileMenu);
-    document.getElementById('mobileClose')?.addEventListener('click', closeMobileMenu);
-    
+
     // Modal event listeners
     modalClose.addEventListener('click', closeModal);
     productModal.addEventListener('click', (e) => {
@@ -168,87 +171,117 @@ function setupEventListeners() {
             closeModal();
         }
     });
-    
+
     // Product card click delegation
     productsGrid.addEventListener('click', function(e) {
-        console.log('Click detected on productsGrid');
         const card = e.target.closest('.product-card');
-        if (card) {
-            console.log('Product card clicked');
-            const productId = parseInt(card.dataset.productId);
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                console.log('Opening modal for product:', product.name);
-                openModal(product);
-            }
+        if (!card) return;
+        const productId = parseInt(card.dataset.productId, 10);
+        const product = products.find(p => p.id === productId);
+        if (product) {
+            openModal(product);
         }
     });
 }
 
+// ===== SEARCH SYNC =====
+function syncSearchInputs(value) {
+    if (searchFilterInput) {
+        searchFilterInput.value = value;
+    }
+    document.querySelectorAll('.mobile-search .search-input').forEach(input => {
+        input.value = value;
+    });
+}
+
+function setSearchQuery(value) {
+    currentFilter.searchQuery = value.toLowerCase();
+    syncSearchInputs(value);
+    renderProducts();
+}
+
 // ===== MODAL FUNCTIONS =====
 function openModal(product) {
-    // Populate modal with product data
+    lastFocusedElement = document.activeElement;
+
     modalProductImage.src = product.image;
     modalProductImage.alt = product.name;
     modalProductCategory.textContent = getCategoryLabel(product.category);
     modalProductName.textContent = product.name;
-    
-    // Use fullDescription if available, otherwise use description
+
     if (product.fullDescription) {
         modalProductDescription.innerHTML = product.fullDescription.map(line => `<p>${line}</p>`).join('');
     } else {
         modalProductDescription.textContent = product.description;
     }
-    
+
     modalProductId.textContent = `#${product.id.toString().padStart(4, '0')}`;
     modalProductCategoryName.textContent = getCategoryLabel(product.category);
-    
-    // Set WhatsApp link
-    const whatsappMessage = `Hola,%20me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}%20(ID:%20${product.id})`;
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
-    modalWhatsappBtn.href = whatsappUrl;
-    
-    // Show modal
+
+    const whatsappMessage = `Hola, me interesa el producto: ${product.name} (ID: ${product.id})`;
+    modalWhatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+
     productModal.classList.add('active');
+    productModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    modalClose.focus();
 }
 
 function closeModal() {
     productModal.classList.remove('active');
+    productModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (lastFocusedElement && lastFocusedElement.focus) {
+        lastFocusedElement.focus();
+    }
 }
 
 // ===== PRODUCT RENDERING =====
 function renderProducts() {
     applyFilters();
-    
+
     if (filteredProducts.length === 0) {
         productsGrid.innerHTML = '';
         noResults.style.display = 'block';
         resultsCount.textContent = '0';
         return;
     }
-    
+
     noResults.style.display = 'none';
     resultsCount.textContent = filteredProducts.length;
     productsGrid.innerHTML = filteredProducts.map(product => createProductCard(product)).join('');
 }
 
+const PRODUCT_IMAGE_DIMENSIONS = {
+    'cuchilla-circular-hss.webp': ['217', '210'],
+    'cuchilla-circular-recubierto-con-tungsteno.webp': ['218', '212'],
+    'doctor-blade.webp': ['594', '444'],
+    'ejes-de-aluminio-anodizado.webp': ['197', '69'],
+    'dispensadores-de-etiquetas-autoadhesivas.webp': ['511', '534'],
+    'cuchillas-dentadas.webp': ['384', '512']
+};
+
+function getImageDimensions(image) {
+    const fileName = image.split('/').pop();
+    return PRODUCT_IMAGE_DIMENSIONS[fileName] || ['', ''];
+}
+
 function createProductCard(product) {
-    const whatsappMessage = `Hola,%20me%20interesa%20el%20producto:%20${encodeURIComponent(product.name)}`;
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
-    
+    const whatsappMessage = `Hola, me interesa el producto: ${product.name}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+    const dimensions = getImageDimensions(product.image);
+
     return `
         <div class="product-card" data-product-id="${product.id}">
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}" width="${dimensions[0]}" height="${dimensions[1]}" loading="lazy" decoding="async">
             </div>
             <div class="product-body">
                 <div class="product-category">${getCategoryLabel(product.category)}</div>
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
-                <a href="${whatsappUrl}" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     WhatsApp
                 </a>
             </div>
@@ -260,7 +293,7 @@ function createProductCard(product) {
 function handleCategoryFilter(e) {
     const value = e.target.value;
     const isChecked = e.target.checked;
-    
+
     if (value === 'all') {
         if (isChecked) {
             filterCheckboxes.forEach(cb => {
@@ -279,29 +312,19 @@ function handleCategoryFilter(e) {
         } else {
             currentFilter.categories.delete(value);
         }
-        
+
         const allChecked = document.querySelectorAll('.filter-checkbox input[type="checkbox"]:not([value="all"])');
         const allCheckedItems = document.querySelectorAll('.filter-checkbox input[type="checkbox"]:not([value="all"]):checked');
         document.querySelector('[value="all"]').checked = allChecked.length === allCheckedItems.length;
     }
-    
-    renderProducts();
-}
 
-function handleSearch(e) {
-    const searchValue = e.target.value.toLowerCase();
-    currentFilter.searchQuery = searchValue;
-    // Also sync with mobile search input
-    if (mobileSearchInput) {
-        mobileSearchInput.value = searchValue;
-    }
     renderProducts();
 }
 
 function applyFilters() {
     filteredProducts = products.filter(product => {
         if (!currentFilter.categories.has(product.category)) return false;
-        
+
         if (currentFilter.searchQuery) {
             const query = currentFilter.searchQuery;
             if (!product.name.toLowerCase().includes(query) &&
@@ -310,12 +333,11 @@ function applyFilters() {
                 return false;
             }
         }
-        
+
         return true;
     });
-    
-    const sortValue = sortSelect.value;
-    sortProducts(sortValue);
+
+    sortProducts(sortSelect.value);
 }
 
 function sortProducts(sortValue) {
@@ -332,7 +354,7 @@ function sortProducts(sortValue) {
     }
 }
 
-function handleSort(e) {
+function handleSort() {
     renderProducts();
 }
 
@@ -341,18 +363,16 @@ function resetFilters() {
         categories: new Set(['industria-papel', 'industria-grafica', 'industria-plastica', 'manufactura']),
         searchQuery: ''
     };
-    
+
     filterCheckboxes.forEach(cb => {
         cb.checked = true;
     });
-    
-    headerSearchInput.value = '';
-    // Also clear mobile search input
-    if (mobileSearchInput) {
-        mobileSearchInput.value = '';
+
+    if (searchFilterInput) {
+        searchFilterInput.value = '';
     }
     sortSelect.value = 'newest';
-    
+
     renderProducts();
     filtersSidebar.classList.remove('active');
 }
@@ -366,36 +386,4 @@ function getCategoryLabel(category) {
         'manufactura': 'Manufactura'
     };
     return labels[category] || category;
-}
-
-function toggleMobileMenu() {
-    document.getElementById('menuToggle').classList.toggle('active');
-    document.getElementById('navMobile').classList.toggle('active');
-}
-
-function closeMobileMenu() {
-    document.getElementById('menuToggle').classList.remove('active');
-    document.getElementById('navMobile').classList.remove('active');
-}
-
-// ===== MOBILE SEARCH FUNCTIONS =====
-function handleMobileSearch(e) {
-    const searchValue = e.target.value.toLowerCase();
-    currentFilter.searchQuery = searchValue;
-    // Also sync with header search input
-    if (headerSearchInput) {
-        headerSearchInput.value = searchValue;
-    }
-    renderProducts();
-}
-
-function handleMobileSearchButton(e) {
-    e.preventDefault();
-    const searchValue = mobileSearchInput.value.toLowerCase();
-    currentFilter.searchQuery = searchValue;
-    // Also sync with header search input
-    if (headerSearchInput) {
-        headerSearchInput.value = searchValue;
-    }
-    renderProducts();
 }

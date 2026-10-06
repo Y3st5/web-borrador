@@ -14,7 +14,7 @@ body {
         radial-gradient(circle at 75% 75%, rgba(26, 26, 46, 0.03) 0%, transparent 50%),
         linear-gradient(45deg, transparent 49%, rgba(0, 0, 0, 0.01) 50%, rgba(0, 0, 0, 0.01) 51%, transparent 52%);
     background-size: 400px 400px, 300px 300px, 20px 20px;
-    background-attachment: fixed;
+    background-attachment: scroll;
     position: relative;
 }
 
@@ -199,7 +199,7 @@ body::before {
     margin: 0 auto;
 }
 
-.about-us h2 {
+.about-us h1 {
     font-size: 3rem;
     font-weight: 800;
     color: var(--primary);
@@ -211,7 +211,7 @@ body::before {
     animation: fadeInUp 1s ease-out both;
 }
 
-.about-us h2::after {
+.about-us h1::after {
     content: '';
     position: absolute;
     bottom: -15px;
@@ -224,7 +224,7 @@ body::before {
     box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
 }
 
-.about-us h3 {
+.about-us h2 {
     font-size: 1.6rem;
     font-weight: 500;
     color: var(--dark);
@@ -268,7 +268,7 @@ body::before {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
-.about-us h4 {
+.about-us h3 {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent);
@@ -281,7 +281,7 @@ body::before {
     padding-bottom: 0.5rem;
 }
 
-.about-us h4::before {
+.about-us h3::before {
     content: '';
     position: absolute;
     left: 0;
@@ -292,7 +292,7 @@ body::before {
     border-radius: 3px;
 }
 
-.about-us .content-section h4 {
+.about-us .content-section h3 {
     animation: fadeInUp 1s ease-out 0.2s both;
 }
 
@@ -437,11 +437,11 @@ body::before {
         border-radius: 15px;
     }
 
-    .about-us h2 {
+    .about-us h1 {
         font-size: 2.2rem;
     }
 
-    .about-us h3 {
+    .about-us h2 {
         font-size: 1.4rem;
         margin: 1.5rem 0 2rem;
     }
@@ -451,7 +451,7 @@ body::before {
         margin-bottom: 2rem;
     }
 
-    .about-us h4 {
+    .about-us h3 {
         font-size: 1.3rem;
         padding-left: 20px;
     }
@@ -577,25 +577,8 @@ body::before {
         padding: 2rem 0 1rem;
     }
 
-    .social-links {
-        justify-content: center;
-    }
-
     .footer-section h4 {
         font-size: 1.1rem;
     }
 
-    /* Mostrar menú hamburguesa y ocultar menú desktop */
-    .menu-toggle {
-        display: flex !important;
-        background-color: rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-    }
-    .nav-desktop {
-        display: none !important;
-    }
-    .nav-mobile {
-        display: block !important;
-    }
 }

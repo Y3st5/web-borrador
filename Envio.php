@@ -1,9 +1,6 @@
 <?php
-// Configuración de headers para evitar errores de CORS y definir tipo de contenido
+// Configuración de headers
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
 
 // Solo procesar si es una petición POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -12,12 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Función para sanitizar input
+// Función para sanitizar input (escape únicamente en la salida, sin doble escapado)
 function sanitize_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+    return trim($data);
 }
 
 // Función para validar email
@@ -43,7 +37,7 @@ $errors = [];
 
 if (empty($nombre)) {
     $errors[] = 'El nombre es obligatorio';
-} elseif (!preg_match('/^[a-zA-ZÀ-ÿ ]+$/', $nombre)) {
+} elseif (!preg_match('/^[\p{L} ]+$/u', $nombre)) {
     $errors[] = 'El nombre solo puede contener letras y espacios';
 }
 
@@ -59,7 +53,7 @@ if (!is_valid_phone($telefono)) {
 
 if (empty($mensaje)) {
     $errors[] = 'El mensaje es obligatorio';
-} elseif (strlen($mensaje) < 10) {
+} elseif (mb_strlen($mensaje) < 10) {
     $errors[] = 'El mensaje debe tener al menos 10 caracteres';
 }
 
@@ -75,17 +69,17 @@ if (!empty($errors)) {
 }
 
 // Configuración del email
-$to = 'ttalsac@hotmail.com'; // Cambia esto por tu email real
+$to = 'ttalsac@hotmail.com';
 $subject = 'Consulta desde sitio web - ' . str_replace(["\r", "\n"], ' ', $nombre);
 $headers = [
     'MIME-Version: 1.0',
     'Content-type: text/html; charset=UTF-8',
-    'From: ' . str_replace(["\r", "\n"], '', $email),
+    'From: Sitio Web T&T <ventas@ttalsac.com>',
     'Reply-To: ' . str_replace(["\r", "\n"], '', $email),
     'X-Mailer: PHP/' . phpversion()
 ];
 
-// Cuerpo del email en HTML
+// Cuerpo del email en HTML (escape en la salida, una sola vez)
 $message = '
 <!DOCTYPE html>
 <html lang="es">
@@ -106,7 +100,7 @@ $message = '
 <body>
     <div class="container">
         <div class="header">
-            <h1>TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</h1>
+            <h1>TECNOLOGÍA &amp; TALLERES REPRESENTACIONES S.A.C.</h1>
             <p>Nueva consulta desde el sitio web</p>
         </div>
         <div class="content">
@@ -128,7 +122,7 @@ $message = '
             </div>
         </div>
         <div class="footer">
-            <p>Este mensaje fue enviado desde el formulario de contacto del sitio web de TECNOLOGÍA & TALLERES REPRESENTACIONES S.A.C.</p>
+            <p>Este mensaje fue enviado desde el formulario de contacto del sitio web de TECNOLOGÍA &amp; TALLERES REPRESENTACIONES S.A.C.</p>
         </div>
     </div>
 </body>
@@ -137,12 +131,8 @@ $message = '
 // Intentar enviar el email
 $mail_sent = mail($to, $subject, $message, implode("\r\n", $headers));
 
-// También enviar una copia al remitente si se desea (opcional)
-// $copy_sent = mail($email, 'Copia de su consulta - ' . $subject, $message, implode("\r\n", $headers));
-
 // Preparar respuesta
 if ($mail_sent) {
-    // Log del envío exitoso (opcional)
     $log_message = date('Y-m-d H:i:s') . " - Email enviado exitosamente a $to desde $email\n";
     file_put_contents('contact_log.txt', $log_message, FILE_APPEND);
 
@@ -151,7 +141,6 @@ if ($mail_sent) {
         'message' => '¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.'
     ]);
 } else {
-    // Log del error
     $log_message = date('Y-m-d H:i:s') . " - Error al enviar email desde $email\n";
     file_put_contents('contact_log.txt', $log_message, FILE_APPEND);
 

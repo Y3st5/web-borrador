@@ -1,5 +1,6 @@
 node_modules/
 *.log
+contact_log.txt
 .env
 .DS_Store
 Thumbs.db
