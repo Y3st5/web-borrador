@@ -6,7 +6,6 @@
 
 
 body {
-    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.7;
     color: var(--text);
     background:
@@ -200,14 +199,14 @@ body::before {
 }
 
 .about-us h1 {
-    font-size: 3rem;
-    font-weight: 800;
+    font-size: var(--fs-h1);
+    font-weight: 700;
     color: var(--primary);
     margin-bottom: 0.5rem;
     text-align: center;
     position: relative;
     letter-spacing: -0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     animation: fadeInUp 1s ease-out both;
 }
 
@@ -242,7 +241,7 @@ body::before {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 249, 250, 0.6) 100%);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-md);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeInUp 1s ease-out both;
 }
@@ -265,7 +264,7 @@ body::before {
 
 .about-us .content-section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-md);
 }
 
 .about-us h3 {
@@ -326,8 +325,8 @@ body::before {
     background: rgba(255, 255, 255, 0.7);
     border-radius: 10px;
     border-left: 4px solid var(--accent);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
     animation: slideInLeft 0.8s ease-out both;
 }
 
@@ -346,7 +345,7 @@ body::before {
 .about-us ol li:hover {
     background: rgba(255, 255, 255, 0.9);
     transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .about-us ol li::before {
@@ -383,7 +382,7 @@ body::before {
     background: rgba(248, 249, 250, 0.8);
     border-radius: 8px;
     border-left: 3px solid var(--primary);
-    transition: all 0.3s ease;
+    transition: var(--transition);
     animation: slideInLeft 0.8s ease-out both;
 }
 
