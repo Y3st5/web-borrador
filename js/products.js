@@ -107,7 +107,6 @@ const searchFilterInput = document.querySelector('.search-filter-input');
 
 // Modal Elements
 const productModal = document.getElementById('productModal');
-const modalClose = document.getElementById('modalClose');
 const modalProductImage = document.getElementById('modalProductImage');
 const modalProductCategory = document.getElementById('modalProductCategory');
 const modalProductName = document.getElementById('modalProductName');
@@ -160,7 +159,6 @@ function setupEventListeners() {
     });
 
     // Modal event listeners
-    modalClose.addEventListener('click', closeModal);
     productModal.addEventListener('click', (e) => {
         if (e.target === productModal) {
             closeModal();

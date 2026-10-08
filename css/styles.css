@@ -94,22 +94,6 @@ h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
 
 /* ===== Accessibility ===== */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--primary);
-    color: var(--white);
-    padding: 8px;
-    text-decoration: none;
-    border-radius: var(--radius);
-    z-index: 10000;
-    font-weight: 600;
-}
-
-.skip-link:focus {
-    top: 6px;
-}
 section {
   scroll-margin-top: 130px;
 }
